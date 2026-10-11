@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velora – Online Fashion Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ Icon sprite (Lucide-style, 24×24) ============ -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4.2-4.2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="14" rx="1.5"/><rect width="7" height="7" x="3" y="14" rx="1.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.42l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-notes" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></symbol>
+  <symbol id="i-call" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></symbol>
+  <symbol id="i-select" viewBox="0 0 24 24"><path d="M5 3a2 2 0 0 0-2 2M19 3a2 2 0 0 1 2 2M21 19a2 2 0 0 1-2 2M5 21a2 2 0 0 1-2-2M9 3h1M9 21h1M14 3h1M14 21h1M3 9v1M21 9v1M3 14v1M21 14v1"/></symbol>
+  <!-- Garment illustrations -->
+  <symbol id="g-dress" viewBox="0 0 24 24"><path d="M9.5 2.5v3M14.5 2.5v3"/><path d="M9 5.5h6l1 4-1.5 1.5L19 21.5H5l4.5-10.5L8 9.5z"/><path d="M9.5 11h5"/></symbol>
+  <symbol id="g-shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></symbol>
+  <symbol id="g-jacket" viewBox="0 0 24 24"><path d="M8.5 3 4 5.5 2.5 12l3 1V21h13v-8l3-1L20 5.5 15.5 3 12 7z"/><path d="M12 7v14M8.5 3 10 9M15.5 3 14 9"/></symbol>
+  <symbol id="g-sneaker" viewBox="0 0 24 24"><path d="M2.5 17.5V13L6.5 8 9 9.6l2 2.6c3 .4 6.6 1 8.6 2.2a2.6 2.6 0 0 1 1.4 2.3v.8z"/><path d="M2.5 17.5h19v1.8a.7.7 0 0 1-.7.7H3.2a.7.7 0 0 1-.7-.7z"/><path d="m8.5 11.5 1.2 1M10.3 13.6l1.2 1"/></symbol>
+</svg>
+
+<main class="phone">
+
+  <!-- ============ Status bar + notch (shared) ============ -->
+  <div class="status" aria-hidden="true">
+    <span>9:41</span>
+    <svg class="notch" viewBox="0 0 162 32"><path d="M0 0H162C156.5 0 154 2.5 154 8V10C154 22.2 144.2 32 132 32H30C17.8 32 8 22.2 8 10V8C8 2.5 5.5 0 0 0Z" fill="#0B0B0C"/><rect x="62" y="12" width="34" height="5" rx="2.5" fill="#1E1E22"/><circle cx="106" cy="14.5" r="5" fill="#15171E"/><circle cx="106" cy="14.5" r="2.2" fill="#23304A"/></svg>
+    <span class="sys-icons">
+      <svg width="17" height="11" viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx="1"/><rect x="4.6" y="5" width="3" height="6" rx="1"/><rect x="9.2" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.8" width="3" height="11" rx="1"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M1.6 4.6a9 9 0 0 1 12.8 0M4.2 7.2a5.3 5.3 0 0 1 7.6 0"/><circle cx="8" cy="10.2" r="1.4" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2Z" opacity=".45"/></svg>
+    </span>
+  </div>
+
+  <!-- ============ 01 · Onboarding ============ -->
+  <section class="screen" id="onboarding">
+    <div class="onb">
+      <div class="row between">
+        <span class="logo">VELORA</span>
+        <a class="pill" href="#home">Skip</a>
+      </div>
+      <div class="hero">
+        <span class="hero-halo"></span><span class="hero-blob"></span>
+        <svg class="art hero-art"><use href="#g-dress"/></svg>
+        <span class="chip chip-season"><span class="dot"></span>NEW SEASON '26</span>
+        <span class="chip chip-price">₹2,499</span>
+        <div class="review">
+          <span class="avatars"><span style="--c:#C8553D"></span><span style="--c:#7FA37A"></span><span style="--c:#E0A526"></span></span>
+          <div><b class="row xs"><svg class="i s12 star"><use href="#i-star"/></svg>4.9</b><small class="muted">12k+ happy shoppers</small></div>
+        </div>
+      </div>
+      <div class="col gap10">
+        <h1 class="serif h-xl">Dress the way<br>you feel.</h1>
+        <p class="muted lh22">Curated looks and conscious fabrics, made to fit you — delivered in 48 hours.</p>
+      </div>
+      <div class="dots"><span class="on"></span><span></span><span></span></div>
+      <div class="col gap14 center">
+        <a class="btn btn-primary" href="#login">Get Started <svg class="i"><use href="#i-arrow"/></svg></a>
+        <p class="small muted">Already have an account? <a class="link" href="#login">Sign in</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · Sign In ============ -->
+  <section class="screen" id="login">
+    <div class="auth">
+      <a class="icon-btn" href="#onboarding" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></a>
+      <div class="col gap8">
+        <h1 class="serif h-lg">Welcome back</h1>
+        <p class="muted lh22">Sign in to pick up where you left off — your bag, wishlist and orders are waiting.</p>
+      </div>
+      <div class="col gap16">
+        <label class="field">Email address
+          <span class="input"><svg class="i"><use href="#i-mail"/></svg><input type="email" value="ananya@velora.in"></span>
+        </label>
+        <label class="field">Password
+          <span class="input"><svg class="i"><use href="#i-lock"/></svg><input type="password" value="velora2026"><svg class="i muted"><use href="#i-eye"/></svg></span>
+        </label>
+        <div class="row between small">
+          <label class="row check"><input type="checkbox" checked> Remember me</label>
+          <a class="accent semibold" href="#login">Forgot password?</a>
+        </div>
+        <a class="btn btn-primary" href="#home">Sign In</a>
+      </div>
+      <div class="col gap18">
+        <p class="divider xs muted">or continue with</p>
+        <div class="row gap12">
+          <a class="provider" href="#home">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z" fill="#4285F4"/><path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.83.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z" fill="#34A853"/><path d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z" fill="#FBBC05"/><path d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 9 0 9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z" fill="#EA4335"/></svg>
+            Google</a>
+          <a class="provider" href="#home">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#1C1B1F" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Apple</a>
+        </div>
+      </div>
+      <p class="small muted center mt-auto">New to Velora? <a class="link" href="#login">Create an account</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 03 · Home ============ -->
+  <section class="screen" id="home">
+    <header class="topbar">
+      <a class="icon-btn" href="#menu" aria-label="Menu"><svg class="i"><use href="#i-menu"/></svg></a>
+      <span class="logo">VELORA</span>
+      <a class="icon-btn" href="#cart" aria-label="Bag, 3 items"><svg class="i"><use href="#i-bag"/></svg><span class="badge">3</span></a>
+    </header>
+    <div class="scroll stack">
+      <div class="px col gap2">
+        <p class="muted">Hello, Ananya</p>
+        <h2 class="serif h-md">Find your perfect style</h2>
+      </div>
+      <div class="px row gap12">
+        <label class="input search"><svg class="i muted"><use href="#i-search"/></svg><input type="search" placeholder="Search dresses, shirts, shoes…"></label>
+        <a class="filter" href="#home" aria-label="Filters"><svg class="i"><use href="#i-sliders"/></svg></a>
+      </div>
+      <div class="px">
+        <a class="banner" href="#product">
+          <span class="banner-blob"></span>
+          <svg class="art banner-art"><use href="#g-jacket"/></svg>
+          <span class="eyebrow">AUTUMN SALE</span>
+          <span class="serif banner-h">Up to 40% off</span>
+          <span class="xs op70">On new-season outerwear</span>
+          <span class="shop">Shop now <svg class="i s14"><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+      <div class="chips">
+        <label class="chip-btn"><input type="radio" name="cat" checked>All</label>
+        <label class="chip-btn"><input type="radio" name="cat">Dresses</label>
+        <label class="chip-btn"><input type="radio" name="cat">Shirts</label>
+        <label class="chip-btn"><input type="radio" name="cat">Jackets</label>
+        <label class="chip-btn"><input type="radio" name="cat">Shoes</label>
+        <label class="chip-btn"><input type="radio" name="cat">Bags</label>
+      </div>
+      <div class="px row between"><h3 class="h-sm">New Arrivals</h3><a class="small muted" href="#home">See all</a></div>
+      <div class="px grid">
+        <a class="pcard" href="#product">
+          <span class="pimg" style="--c:var(--sand)"><span class="tag">NEW</span><span class="fav"><svg class="i s16"><use href="#i-heart"/></svg></span><svg class="art"><use href="#g-dress"/></svg></span>
+          <span class="pname">Linen Wrap Dress</span>
+          <span class="pmeta">₹2,499<span class="rating"><svg class="i s12 star"><use href="#i-star"/></svg>4.8</span></span>
+        </a>
+        <a class="pcard" href="#product">
+          <span class="pimg" style="--c:var(--fog)"><span class="fav"><svg class="i s16"><use href="#i-heart"/></svg></span><svg class="art"><use href="#g-shirt"/></svg></span>
+          <span class="pname">Cotton Shirt</span>
+          <span class="pmeta">₹1,299<span class="rating"><svg class="i s12 star"><use href="#i-star"/></svg>4.6</span></span>
+        </a>
+        <a class="pcard" href="#product">
+          <span class="pimg" style="--c:var(--sage)"><span class="tag">NEW</span><span class="fav"><svg class="i s16"><use href="#i-heart"/></svg></span><svg class="art"><use href="#g-jacket"/></svg></span>
+          <span class="pname">Wool Jacket</span>
+          <span class="pmeta">₹4,999<span class="rating"><svg class="i s12 star"><use href="#i-star"/></svg>4.9</span></span>
+        </a>
+        <a class="pcard" href="#product">
+          <span class="pimg" style="--c:var(--blush)"><span class="fav"><svg class="i s16"><use href="#i-heart"/></svg></span><svg class="art"><use href="#g-sneaker"/></svg></span>
+          <span class="pname">Leather Sneakers</span>
+          <span class="pmeta">₹3,199<span class="rating"><svg class="i s12 star"><use href="#i-star"/></svg>4.7</span></span>
+        </a>
+      </div>
+    </div>
+    <nav class="bottom tabbar" aria-label="App">
+      <a class="tab active" href="#home"><svg class="i"><use href="#i-home"/></svg>Home</a>
+      <a class="tab" href="#home" aria-label="Explore"><svg class="i s22"><use href="#i-grid"/></svg></a>
+      <a class="tab" href="#home" aria-label="Wishlist"><svg class="i s22"><use href="#i-heart"/></svg></a>
+      <a class="tab" href="#cart" aria-label="Bag"><svg class="i s22"><use href="#i-bag"/></svg><span class="tab-dot"></span></a>
+      <a class="tab" href="#menu" aria-label="Profile"><svg class="i s22"><use href="#i-user"/></svg></a>
+    </nav>
+  </section>
+
+  <!-- ============ 04 · Menu drawer ============ -->
+  <section class="screen menu" id="menu">
+    <a class="scrim" href="#home" aria-label="Close menu"></a>
+    <aside class="drawer">
+      <div class="profile">
+        <span class="avatar">AS</span>
+        <div class="col gap4">
+          <b class="h-sm">Ananya Sharma</b>
+          <span class="xs muted">ananya@velora.in</span>
+          <span class="member"><svg class="i s10 gold"><use href="#i-star"/></svg>Gold member</span>
+        </div>
+      </div>
+      <a class="mitem active" href="#home"><svg class="i"><use href="#i-home"/></svg><span>Home</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <a class="mitem" href="#home"><svg class="i"><use href="#i-tag"/></svg><span>New Arrivals</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <a class="mitem" href="#home"><svg class="i"><use href="#i-grid"/></svg><span>Categories</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <a class="mitem" href="#success"><svg class="i"><use href="#i-package"/></svg><span>My Orders</span><b class="count">2</b></a>
+      <a class="mitem" href="#home"><svg class="i"><use href="#i-heart"/></svg><span>Wishlist</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <a class="mitem" href="#home"><svg class="i"><use href="#i-bell"/></svg><span>Notifications</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <a class="mitem" href="#home"><svg class="i"><use href="#i-settings"/></svg><span>Settings</span><svg class="i s16 faint"><use href="#i-chev"/></svg></a>
+      <div class="refer mt-auto">
+        <span class="gift"><svg class="i"><use href="#i-gift"/></svg></span>
+        <div class="col"><b class="small">Refer a friend</b><span class="xs op65">You both get ₹500 off</span></div>
+      </div>
+      <a class="mitem logout" href="#onboarding"><svg class="i"><use href="#i-logout"/></svg><span>Log out</span></a>
+    </aside>
+    <a class="icon-btn plain close" href="#home" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></a>
+  </section>
+
+  <!-- ============ 05 · Product details ============ -->
+  <section class="screen product" id="product">
+    <div class="p-hero">
+      <span class="p-halo"></span><span class="p-halo sm"></span>
+      <svg class="art p-art"><use href="#g-dress"/></svg>
+      <div class="p-top">
+        <a class="icon-btn plain" href="#home" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></a>
+        <div class="row gap10">
+          <a class="icon-btn plain" href="#product" aria-label="Share"><svg class="i s18"><use href="#i-share"/></svg></a>
+          <a class="icon-btn plain" href="#product" aria-label="Saved to wishlist"><svg class="i filled-accent"><use href="#i-heart"/></svg></a>
+        </div>
+      </div>
+      <div class="pager"><span class="on"></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="sheet">
+      <div class="row between top">
+        <div class="col"><span class="brand">VELORA STUDIO</span><h1 class="serif pname-lg">Linen Wrap Dress</h1></div>
+        <span class="rate-pill"><svg class="i s14 star"><use href="#i-star"/></svg>4.8 <span class="muted">(126)</span></span>
+      </div>
+      <div class="row gap10"><b class="price">₹2,499</b><s class="muted">₹3,299</s><span class="off">24% OFF</span></div>
+      <div class="col gap10">
+        <p class="small"><span class="muted">Color:</span> <b>Sage</b></p>
+        <div class="row gap12">
+          <label class="swatch"><input type="radio" name="color" checked><span style="--c:#A9BDA0"></span></label>
+          <label class="swatch"><input type="radio" name="color"><span style="--c:#D8C3AE"></span></label>
+          <label class="swatch"><input type="radio" name="color"><span style="--c:#1C1B1F"></span></label>
+          <label class="swatch"><input type="radio" name="color"><span style="--c:#E2B8AE"></span></label>
+        </div>
+      </div>
+      <div class="col gap10">
+        <div class="row between small"><span class="muted">Size</span><a class="link" href="#product">Size guide</a></div>
+        <div class="sizes">
+          <label class="size"><input type="radio" name="size">XS</label>
+          <label class="size"><input type="radio" name="size">S</label>
+          <label class="size"><input type="radio" name="size" checked>M</label>
+          <label class="size"><input type="radio" name="size">L</label>
+          <label class="size out"><input type="radio" name="size" disabled>XL</label>
+        </div>
+      </div>
+      <p class="small muted lh20">Breathable linen, a flattering wrap silhouette and an adjustable tie waist.</p>
+      <div class="buy mt-auto">
+        <div class="qty">
+          <span class="icon-btn plain soft"><svg class="i s18"><use href="#i-minus"/></svg></span>
+          <b>1</b>
+          <span class="icon-btn plain soft"><svg class="i s18"><use href="#i-plus"/></svg></span>
+        </div>
+        <a class="btn btn-primary" href="#cart">Add to Bag</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · My Bag ============ -->
+  <section class="screen" id="cart">
+    <header class="topbar">
+      <a class="icon-btn" href="#home" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></a>
+      <span class="title">My Bag (3)</span>
+      <a class="icon-btn" href="#cart" aria-label="Clear bag"><svg class="i"><use href="#i-trash"/></svg></a>
+    </header>
+    <div class="scroll list">
+      <div class="citem">
+        <span class="thumb" style="--c:var(--sand)"><svg class="art"><use href="#g-dress"/></svg></span>
+        <div class="cinfo">
+          <div class="row between top"><b class="medium">Linen Wrap Dress</b><svg class="i s18 muted"><use href="#i-x"/></svg></div>
+          <span class="xs muted">Size M · Sage</span>
+          <div class="row between pt10"><b class="semibold">₹2,499</b><span class="stepper"><span><svg class="i s14"><use href="#i-minus"/></svg></span>1<span class="plus"><svg class="i s14"><use href="#i-plus"/></svg></span></span></div>
+        </div>
+      </div>
+      <div class="citem">
+        <span class="thumb" style="--c:var(--fog)"><svg class="art"><use href="#g-shirt"/></svg></span>
+        <div class="cinfo">
+          <div class="row between top"><b class="medium">Cotton Shirt</b><svg class="i s18 muted"><use href="#i-x"/></svg></div>
+          <span class="xs muted">Size L · Fog Blue</span>
+          <div class="row between pt10"><b class="semibold">₹2,598</b><span class="stepper"><span><svg class="i s14"><use href="#i-minus"/></svg></span>2<span class="plus"><svg class="i s14"><use href="#i-plus"/></svg></span></span></div>
+        </div>
+      </div>
+      <div class="citem">
+        <span class="thumb" style="--c:var(--blush)"><svg class="art"><use href="#g-sneaker"/></svg></span>
+        <div class="cinfo">
+          <div class="row between top"><b class="medium">Leather Sneakers</b><svg class="i s18 muted"><use href="#i-x"/></svg></div>
+          <span class="xs muted">UK 7 · Blush</span>
+          <div class="row between pt10"><b class="semibold">₹3,199</b><span class="stepper"><span><svg class="i s14"><use href="#i-minus"/></svg></span>1<span class="plus"><svg class="i s14"><use href="#i-plus"/></svg></span></span></div>
+        </div>
+      </div>
+      <p class="notice"><svg class="i s18"><use href="#i-truck"/></svg>Yay! You've unlocked FREE delivery</p>
+      <div class="promo">
+        <svg class="i s18 muted"><use href="#i-tag"/></svg>
+        <b class="code">VELORA500</b>
+        <span class="applied"><svg class="i s14"><use href="#i-check"/></svg>Applied</span>
+      </div>
+      <div class="card summary">
+        <p class="row between"><span class="muted">Subtotal</span><b class="medium">₹8,296</b></p>
+        <p class="row between"><span class="muted">Delivery</span><b class="medium green">Free</b></p>
+        <p class="row between"><span class="muted">Promo (VELORA500)</span><b class="medium accent">−₹500</b></p>
+      </div>
+    </div>
+    <div class="paybar">
+      <div class="total"><small>Total</small><b>₹7,796</b></div>
+      <a class="btn btn-primary" href="#checkout">Checkout <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ============ 07 · Checkout ============ -->
+  <section class="screen" id="checkout">
+    <header class="topbar">
+      <a class="icon-btn" href="#cart" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></a>
+      <span class="title">Checkout</span>
+      <span class="ghost"></span>
+    </header>
+    <div class="steps">
+      <div class="track">
+        <span class="step done"><svg class="i s14"><use href="#i-check"/></svg></span><span class="bar on"></span>
+        <span class="step active">2</span><span class="bar"></span>
+        <span class="step">3</span>
+      </div>
+      <div class="labels"><span>Bag</span><span class="accent">Payment</span><span class="muted">Confirm</span></div>
+    </div>
+    <div class="scroll list gap8">
+      <div class="section-h">Shipping address <a href="#checkout">Change</a></div>
+      <div class="card address">
+        <span class="icon-circle"><svg class="i"><use href="#i-pin"/></svg></span>
+        <div class="col gap3">
+          <p class="row"><b>Home</b><span class="default">Default</span></p>
+          <span class="xs muted">Ananya Sharma · +91 98765 43210</span>
+          <span class="xs muted lh18">21, 4th Cross, Indiranagar, Bengaluru, Karnataka 560038</span>
+        </div>
+      </div>
+      <div class="section-h">Delivery</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="ship" checked><span class="row between"><svg class="i"><use href="#i-truck"/></svg><span class="radio"></span></span><b>Standard</b><span class="xs muted">Free · 3–5 days</span></label>
+        <label class="opt"><input type="radio" name="ship"><span class="row between"><svg class="i"><use href="#i-zap"/></svg><span class="radio"></span></span><b>Express</b><span class="xs muted">₹149 · Tomorrow</span></label>
+      </div>
+      <div class="section-h">Payment method</div>
+      <label class="pay"><input type="radio" name="pay" checked><span class="icon-circle sm"><svg class="i s18"><use href="#i-phone"/></svg></span><span class="col grow"><b>UPI</b><span class="xs muted">ananya@okhdfcbank</span></span><span class="radio"></span></label>
+      <label class="pay"><input type="radio" name="pay"><span class="icon-circle sm"><svg class="i s18"><use href="#i-card"/></svg></span><span class="col grow"><b>Credit / Debit card</b><span class="xs muted">Visa •••• 4242</span></span><span class="radio"></span></label>
+      <label class="pay"><input type="radio" name="pay"><span class="icon-circle sm"><svg class="i s18"><use href="#i-wallet"/></svg></span><span class="col grow"><b>Cash on delivery</b><span class="xs muted">₹40 handling fee</span></span><span class="radio"></span></label>
+    </div>
+    <div class="paybar">
+      <div class="total"><small>Total</small><b>₹7,796</b></div>
+      <a class="btn btn-primary" href="#success">Pay Now <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ============ 08 · Order placed ============ -->
+  <section class="screen" id="success">
+    <header class="topbar end">
+      <a class="icon-btn" href="#home" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></a>
+    </header>
+    <div class="done-wrap">
+      <div class="burst" aria-hidden="true">
+        <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+        <svg class="i burst-check"><use href="#i-check"/></svg>
+        <span class="conf" style="--c:#E0A526;left:20px;top:30px;rotate:20deg"></span>
+        <span class="conf dot" style="--c:#7FA37A;left:206px;top:22px"></span>
+        <span class="conf dot" style="--c:#1C1B1F;left:30px;top:160px"></span>
+        <span class="conf" style="--c:#E0A526;left:214px;top:150px;rotate:-25deg"></span>
+        <span class="conf dot" style="--c:#C8553D;left:60px;top:6px"></span>
+        <span class="conf" style="--c:#C8553D;left:178px;top:192px;rotate:35deg"></span>
+        <span class="conf" style="--c:#7FA37A;left:4px;top:96px;rotate:45deg"></span>
+        <span class="conf" style="--c:#1C1B1F;left:228px;top:90px;rotate:15deg"></span>
+      </div>
+      <h1 class="serif h-lg mt24">Order placed!</h1>
+      <p class="muted lh22 mt10 w320">Thank you, Ananya! Order #VL-20481 is confirmed and will arrive by Thursday, 8 Oct.</p>
+      <div class="card order-card">
+        <div class="row gap12">
+          <span class="icon-circle green-bg"><svg class="i"><use href="#i-truck"/></svg></span>
+          <div class="col"><span class="xs muted">Estimated delivery</span><b>Thu, 8 Oct · Standard</b></div>
+        </div>
+        <hr>
+        <div class="row between">
+          <div class="thumbs">
+            <span style="--c:var(--sand)"><svg class="art"><use href="#g-dress"/></svg></span>
+            <span style="--c:var(--fog)"><svg class="art"><use href="#g-shirt"/></svg></span>
+            <span style="--c:var(--blush)"><svg class="art"><use href="#g-sneaker"/></svg></span>
+          </div>
+          <div class="col right"><span class="xs muted">3 items</span><b class="h-sm">₹7,796</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary" href="#success">Track Order</a>
+      <a class="btn btn-outline" href="#home">Continue Shopping</a>
+    </div>
+  </section>
+
+  <!-- ============ 09 · Android home (launcher) ============ -->
+  <section class="screen launcher" id="launcher">
+    <span class="wall w1"></span><span class="wall w2"></span>
+    <div class="l-body">
+      <div class="col gap4">
+        <h2 class="glance">Sunday, 4 Oct</h2>
+        <p class="row small op75"><svg class="i s18"><use href="#i-sun"/></svg>27°C · Bengaluru</p>
+      </div>
+      <div class="apps">
+        <a class="app" href="#home"><span class="app-ic velora-ic">V<span class="notif"></span></span>Velora</a>
+        <span class="app"><span class="app-ic" style="--c:#EADCF5"><svg class="i"><use href="#i-image"/></svg></span>Photos</span>
+        <span class="app"><span class="app-ic" style="--c:#DCE6F4"><svg class="i"><use href="#i-clock"/></svg></span>Clock</span>
+        <span class="app"><span class="app-ic" style="--c:#F9DED3"><svg class="i"><use href="#i-music"/></svg></span>Music</span>
+        <span class="app"><span class="app-ic" style="--c:#E2EEDB"><svg class="i"><use href="#i-calendar"/></svg></span>Calendar</span>
+        <span class="app"><span class="app-ic" style="--c:#FBEFC9"><svg class="i"><use href="#i-notes"/></svg></span>Notes</span>
+        <span class="app"><span class="app-ic" style="--c:#DDEBF7"><svg class="i"><use href="#i-sun"/></svg></span>Weather</span>
+        <span class="app"><span class="app-ic" style="--c:#E9E5E1"><svg class="i"><use href="#i-settings"/></svg></span>Settings</span>
+      </div>
+      <div class="dock">
+        <span class="app-ic" style="--c:#DCEFE0"><svg class="i"><use href="#i-call"/></svg></span>
+        <span class="app-ic" style="--c:#DCE6F4"><svg class="i"><use href="#i-message"/></svg></span>
+        <span class="app-ic" style="--c:#EFE7E0"><svg class="i"><use href="#i-camera"/></svg></span>
+        <span class="app-ic" style="--c:#F9DED3"><svg class="i"><use href="#i-globe"/></svg></span>
+      </div>
+      <label class="lsearch"><svg class="i"><use href="#i-search"/></svg><input type="search" placeholder="Search"><svg class="i"><use href="#i-mic"/></svg></label>
+    </div>
+  </section>
+
+  <!-- ============ 10 · Recent apps ============ -->
+  <section class="screen recents" id="recents">
+    <div class="rcard left" aria-hidden="true"><span class="r-head"></span><span class="bubble" style="width:150px"></span><span class="bubble r" style="width:170px"></span><span class="bubble" style="width:120px"></span><span class="bubble r" style="width:160px"></span></div>
+    <div class="rcard right" aria-hidden="true"><span class="photos"><i style="--c:#EADCF5"></i><i style="--c:#F9DED3"></i><i style="--c:#DCEFE0"></i><i style="--c:#FBEFC9"></i><i style="--c:#DCE6F4"></i><i style="--c:#E9E5E1"></i><i style="--c:#EADCF5"></i><i style="--c:#F9DED3"></i><i style="--c:#DCEFE0"></i></span></div>
+    <a class="app-label" href="#home"><span class="velora-ic sm">V</span>Velora</a>
+    <a class="rcard main" href="#home" aria-label="Resume Velora">
+      <span class="logo mini-logo">VELORA</span>
+      <span class="serif mini-h">Find your perfect style</span>
+      <span class="mini-search"></span>
+      <span class="mini-banner">Up to 40% off</span>
+      <span class="mini-grid"><i style="--c:var(--sand)"></i><i style="--c:var(--fog)"></i><i style="--c:var(--sage)"></i><i style="--c:var(--blush)"></i></span>
+    </a>
+    <div class="r-actions">
+      <span><svg class="i s18"><use href="#i-scan"/></svg>Screenshot</span>
+      <span><svg class="i s18"><use href="#i-select"/></svg>Select</span>
+    </div>
+  </section>
+
+  <!-- ============ Android navigation bar (shared) ============ -->
+  <nav class="sysnav" aria-label="System navigation">
+    <a href="javascript:history.back()" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M16 5.5v13L6 12z"/></svg></a>
+    <a href="#launcher" aria-label="Home"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/></svg></a>
+    <a href="#recents" aria-label="Recent apps"><svg viewBox="0 0 24 24"><rect x="5.5" y="5.5" width="13" height="13" rx="2.5"/></svg></a>
+  </nav>
+</main>
+
+</body>
+</html>
